@@ -23,7 +23,7 @@ This is a bill-splitting and expense-tracking app built using Angular. The app a
 <li>Learn component structure, event binding, and state management</li>
 </ul>
 
-<h5>🚀 Technologies Used</h5>
+<h4>🚀 Technologies Used</h4>
 <ul>
 <li>Angular (v14+)</li>
 
@@ -34,7 +34,7 @@ This is a bill-splitting and expense-tracking app built using Angular. The app a
 <li>FormsModule & RouterModule</li>
 </ul>
 
-<h5>🎯 Purpose</h5>
+<h4>🎯 Purpose</h4>
 This project was created as a practice project to sharpen Angular development skills, particularly:
 <ul>
 <li>Working with standalone components</li>
