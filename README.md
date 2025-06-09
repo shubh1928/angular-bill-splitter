@@ -13,29 +13,33 @@ This is a bill-splitting and expense-tracking app built using Angular. The app a
 
 <ul>
 <li>Add multiple expenses with name, amount, and number of people</li>
+
+<li>Automatically calculate total expenses and split amount</li>
+
+<li>Reset or start a new bill when participants change</li>
+
+<li>Handle conditional UI with Angular directives like *ngIf, *ngFor</li>
+
+<li>Learn component structure, event binding, and state management</li>
 </ul>
-Automatically calculate total expenses and split amount
-
-Reset or start a new bill when participants change
-
-Handle conditional UI with Angular directives like *ngIf, *ngFor
-
-Learn component structure, event binding, and state management
 
 🚀 Technologies Used
-Angular (v14+)
+<ul>
+<li>Angular (v14+)</li>
 
-TypeScript
+<li>TypeScript</li>
 
-HTML, CSS
+<li>HTML, CSS</li>
 
-FormsModule & RouterModule
+<li>FormsModule & RouterModule</li>
+</ul>
 
 🎯 Purpose
 This project was created as a practice project to sharpen Angular development skills, particularly:
+<ul>
+<li>Working with standalone components</li>
 
-Working with standalone components
+<li>Using structural and attribute directives</li>
 
-Using structural and attribute directives
-
-Managing user input forms and conditional logic
+<li>Managing user input forms and conditional logic</li>
+</ul>
