@@ -1,0 +1,100 @@
+<div class="container mt-5">
+
+  <!-- // TaskBuddy Application -->
+  <div class="text-center mb-4">
+    <h1 class="display-7">TaskBuddy</h1>
+  </div>
+
+  <!-- // Task Input Form -->
+  <div class="input-group mb-3">
+    <input [(ngModel)]="taskInput" class="form-control" placeholder="Enter a task" />
+    <input [(ngModel)]="taskDate" type="date" class="form-control" />
+    <button (click)="addTasks()" class="btn btn-primary">Add Task</button>
+  </div>
+
+  <!-- // Task List with Filtering and Actions -->
+  <div class="mb-3">
+    <label class="form-label me-2">Filter</label>
+    <select [(ngModel)]="filter" class="form-select w-auto d-inline-block">
+    <option value="">None</option>
+      <option value="all">All</option>
+      <option value="completed">Completed</option>
+      <option value="pending">Pending</option>
+    </select>
+
+    &nbsp;&nbsp;&nbsp;
+
+    <!-- // Sort Options based on Due Date or Priority -->
+    <label class="form-label me-2">Sort By</label>
+    <select [(ngModel)]="sortOption" class="form-select w-auto d-inline-block">
+      <option value="">None</option>
+      <option value="date">Due Date</option>
+      <option value="priority">Priority</option>
+    </select>
+  </div>
+
+  <!-- // No Tasks Message -->
+   <p *ngIf="getSortedTasks().length === 0">No Tasks</p>
+
+  <!-- // Task List -->
+  <ul class="list-group mb-3">
+    <li *ngFor="let task of getSortedTasks(); let i = index" class="list-group-item" [ngClass]="{done: task.done}"
+
+      [ngStyle]="{color: task.priority === 'high' ? 'red' : 
+                           (task.priority === 'medium' ? 'orange' : 'green')}" appHighlight>
+
+      <!-- Static view -->
+      <!-- This section is displayed when the task is not being edited. -->
+      <div *ngIf="!task.isEditing" class="d-flex justify-content-between align-items-center">
+
+        <div class="d-flex align-items-center">
+          <input type="checkbox" class="form-check-input me-2" [checked]="task.done" (change)="toggleTask(i)" />
+          <span>
+            {{task.title}}, {{task.priority}}, {{task.date | date:'mediumDate'}}
+          </span>
+        </div>
+
+        <div>
+          <button (click)="removeTask(i)" class="btn btn-danger btn-sm me-2">Delete</button>
+          <button (click)="toggleEditTask(i)" class="btn btn-success btn-sm">
+            {{ task.isEditing ? 'Save' : 'Edit' }}
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Edit view -->
+       <!-- This section is displayed when the task is being edited. -->
+      <div *ngIf="task.isEditing" class="d-flex flex-column gap-1">
+
+        <input [(ngModel)]="task.title" class="form-control mb-1" />
+
+        <select [(ngModel)]="task.priority" class="form-select mb-1">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+
+        <input type="date" [(ngModel)]="task.date" class="form-control" />
+
+        <div class="mt-2 text-end">
+          <button (click)="removeTask(i)" class="btn btn-danger btn-sm me-2">Delete</button>
+          <button (click)="toggleEditTask(i)" class="btn btn-success btn-sm">
+            {{ task.isEditing ? 'Save' : 'Edit' }}
+          </button>
+        </div>
+
+      </div>
+
+    </li>
+  </ul>
+
+  <!-- // Clear Completed Tasks Button -->
+  <button *ngIf="tasks.length > 0" (click)="clearCompletedTasks()" class="btn btn-primary btn-sm float-end">
+    Clear Completed
+  </button>
+
+  <!-- // Empty Input Message -->
+  <p *ngIf="!taskInput.length">Input Is Empty</p>
+
+</div>

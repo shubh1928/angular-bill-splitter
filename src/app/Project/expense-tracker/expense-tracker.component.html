@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <!-- Title of the app -->
+  <h2 class="text-center">Bill Splitting App</h2>
+
+  <!-- Expense input form -->
+  <!-- #expenseForm references the form for validation -->
+  <!-- (ngSubmit) triggers addExpense() method on form submission -->
+  <form #expenseForm="ngForm" (ngSubmit)="addExpense()">
+    
+    <!-- Input for expense name -->
+    <div class="mb-3">
+      <label for="name">Name of Expense</label>
+      <!-- Two-way binding with newExpense.name, required field -->
+      <input type="text" id="name" class="form-control" placeholder="Enter item name" 
+        [(ngModel)]="newExpense.name" name="name" required />
+    </div>
+    
+    <!-- Input for expense amount -->
+    <div class="mb-3">
+      <label for="amount">Amount</label>
+      <!-- Two-way binding with newExpense.amount, required and min value 1 -->
+      <input type="number" id="amount" class="form-control" placeholder="0" 
+        [(ngModel)]="newExpense.amount" name="amount" required min="1" />
+    </div>
+    
+    <!-- Input for number of people sharing the expense -->
+    <div class="mb-3">
+      <label for="payer">Number of People for this Expense</label>
+      <!-- Two-way binding with newExpense.payer, required and min value 1 -->
+      <input type="number" id="payer" placeholder="0" class="form-control" 
+        [(ngModel)]="newExpense.payer" name="payer" required min="1" />
+    </div>
+    
+    <!-- Submit button to add expense -->
+    <!-- Disabled if form is invalid -->
+    <button type="submit" class="btn btn-primary" [disabled]="!expenseForm.valid">Add Expense</button>
+  </form>
+
+  <!-- Section to decide whether to continue with the same bill or start a new one -->
+  <!-- Shown only if bill has started, user hasn't decided yet, and there are expenses -->
+  <div *ngIf="billStarted === true && continueWithCurrent === null && expenses.length > 0" class="mt-3">
+    <!-- Button to continue with the existing bill -->
+    <button class="btn btn-success me-2" (click)="setContinueBill(true)">Continue with Same Bill</button>
+    <!-- Button to start a new bill, discarding the current expenses -->
+    <button class="btn btn-danger" (click)="setContinueBill(false)">Start New Bill</button>
+  </div>
+
+  <!-- List of added expenses -->
+  <h3 class="mt-4" *ngIf="expenses.length > 0">Expense List</h3>
+  <ul class="list-group">
+    <!-- Iterate over expenses and display each -->
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let expense of expenses; let i = index">
+      <!-- Show number of people, amount, and expense name -->
+      {{ expense.payer }} people: ₹{{ expense.amount }} for {{ expense.name }}
+      <!-- Button to remove this expense -->
+      <button class="btn btn-sm btn-danger" (click)="removeExpense(i)">❌</button>
+    </li>
+  </ul>
+
+  <!-- Show total amount of all expenses -->
+  <h3 class="mt-4" *ngIf="expenses.length > 0">Total: ₹{{ total }}</h3>
+  
+  <!-- Show amount each person should pay, only if number of people is valid and expenses exist -->
+  <h4 *ngIf="numPeople !== null && numPeople > 0 && expenses.length > 0">
+    Each person should pay: ₹{{ splitAmount.toFixed(2) }}
+  </h4>
+
+  <!-- Button to reset/clear all expenses and start fresh -->
+  <button *ngIf="expenses.length > 0" class="btn btn-warning mt-3" (click)="resetBill()">Reset Bill</button>
+</div>
