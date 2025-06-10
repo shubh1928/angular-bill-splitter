@@ -63,14 +63,23 @@ This project was created as a learning project to sharpen Angular development sk
 src/
 │
 ├── app/
-│   └── Project/
-│       └── expense-tracker/
-│           ├── expense-tracker.component.ts
-│           ├── expense-tracker.component.html
-│           └── expense-tracker.component.css
+│   ├── Project/
+│   │   └── expense-tracker/
+│   │       ├── expense-tracker.component.ts
+│   │       ├── expense-tracker.component.html
+│   │       ├── expense-tracker.component.css
+│   │       └── expense-tracker.component.spec.ts
+│   │
+│   ├── app.component.ts
+│   ├── app.component.html
+│   ├── app.component.css
+│   ├── app.component.spec.ts
+│   ├── app.config.ts
+│   └── app.routes.ts
 │
 ├── assets/
 ├── environments/
 ├── index.html
-└── main.ts
+├── main.ts
+└── styles.css
 ```
