@@ -8,7 +8,7 @@ A simple Angular application to track and split expenses among multiple people. 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
 
-<h3>💸 Bill Splitter App (Angular)</h3>
+<h2>💸 Bill Splitter App (Angular)</h2>
 This is a bill-splitting and expense-tracking app built using Angular. The app allows users to:
 
 <ul>
