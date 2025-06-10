@@ -59,4 +59,18 @@ This project was created as a learning project to sharpen Angular development sk
 ---
 
 ## 📁 Project Structure
-
+```
+src/
+│
+├── app/
+│   └── Project/
+│       └── expense-tracker/
+│           ├── expense-tracker.component.ts
+│           ├── expense-tracker.component.html
+│           └── expense-tracker.component.css
+│
+├── assets/
+├── environments/
+├── index.html
+└── main.ts
+```
